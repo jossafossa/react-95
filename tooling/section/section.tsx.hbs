@@ -1,0 +1,10 @@
+import { {{ pascalCase name }}Layout } from "@layouts"
+import { useGet{{ pascalCase name }}Query } from "@slices";
+
+export const {{ pascalCase name }}Section = () => {
+  const { data: {{ lowerCase name }}, isLoading } = useGet{{ pascalCase name }}Query();
+
+  return  <>
+    { {{ lowerCase name }} && <{{ pascalCase name }}Layout {{ camelCase name }}={ {{ lowerCase name }} } /> }
+  </>
+}

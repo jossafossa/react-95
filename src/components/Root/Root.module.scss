@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "MS Sans Serif";
+  src: url("/assets/fonts/ms-sans-serif/MS Sans Serif.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MS Sans Serif";
+  src: url("/assets/fonts/ms-sans-serif/MS Sans Serif Bold.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+.root {
+  --debug: #008080;
+  --background: #c0c0c0;
+  --background-light: #dfdfdf;
+  --background-dark: #808080;
+  --white: white;
+  --black: black;
+  --highlight: #000080;
+
+  --outer-shadow: -1px -1px 0 0 var(--black) inset;
+  --outer-highlight: 1px 1px 0 0 var(--white) inset;
+  --inner-shadow: -2px -2px 0 0 var(--background-dark) inset;
+  --inner-highlight: 2px 2px 0 0 var(--background-light) inset;
+  --border: var(--outer-shadow), var(--outer-highlight), var(--inner-shadow);
+  --border-active: 0 0 0 1px var(--background-dark) inset;
+  --border-inside: -1px -1px 0 0 var(--white) inset,
+    1px 1px 0 0 var(--background-dark) inset,
+    -2px -2px 0 0 var(--background) inset, 2px 2px 0 0 var(--black) inset;
+  --border-inner: -1px -1px 0 0 var(--black) inset,
+    1px 1px 0 0 var(--background) inset,
+    -2px -2px 0 0 var(--background-dark) inset, 2px 2px 0 0 var(--white) inset;
+  font-family: "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+
+  ::selection {
+    background-color: var(--highlight);
+    color: white;
+  }
+
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,19 @@
+:where(.button) {
+  background: none;
+  border: none;
+  font: inherit;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+:where(.anchor) {
+  text-decoration: none;
+  color: inherit;
+}
+
+.clickable {
+  cursor: pointer;
+}

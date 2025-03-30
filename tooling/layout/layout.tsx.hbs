@@ -1,0 +1,22 @@
+import { {{ pascalCase single }}, Container, Section, Stack } from "@components"
+import { type {{ pascalCase plural }}Data } from "@slices"
+
+type {{ pascalCase plural }}Props = {
+  {{ camelCase plural }}: {{ pascalCase plural }}Data
+}
+
+export const {{ pascalCase plural }}Layout = ( {
+  {{ camelCase plural }}
+}: {{ pascalCase plural }}Props ) => {
+  return (
+    <Section>
+      <Container>
+        <Stack vertical>
+          { {{ lowerCase plural }}.map( ( {{ lowerCase single }}, index ) => (
+            <{{ pascalCase single }} key={index} {...{{ lowerCase single }} } />
+          ) )}
+        </Stack>
+      </Container>
+    </Section>
+  )
+}

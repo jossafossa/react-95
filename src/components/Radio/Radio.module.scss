@@ -1,0 +1,116 @@
+.originalRadio {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.radio {
+  --background-color: white;
+  --radio-image: url("/assets/img/check.svg");
+  position: relative;
+  width: 12px;
+  height: 12px;
+  isolation: isolate;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    z-index: -1;
+  }
+}
+
+:where(.highlight, .shadow, .dot) {
+  position: absolute;
+  inset: 0;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 1;
+  }
+}
+
+.highlight {
+  &:before {
+    color: var(--background-dark);
+    mask-image: url("/assets/img/radio-outer-highlight.svg");
+  }
+  &:after {
+    color: var(--background);
+    mask-image: url("/assets/img/radio-inner-highlight.svg");
+  }
+}
+
+.shadow {
+  &:before {
+    color: var(--white);
+    mask-image: url("/assets/img/radio-outer-shadow.svg");
+  }
+  &:after {
+    color: var(--black);
+    mask-image: url("/assets/img/radio-inner-shadow.svg");
+  }
+}
+
+.dot {
+  color: var(--black);
+  opacity: 0;
+  &:before {
+    color: var(--white);
+    mask-image: url("/assets/img/radio-dot.svg");
+    opacity: 0;
+    transform: translate(1px, 1px);
+  }
+
+  &:after {
+    background-color: currentColor;
+    mask-image: url("/assets/img/radio-dot.svg");
+    opacity: 1;
+  }
+}
+
+.label {
+  position: relative;
+  top: 0.5px;
+  padding-top: 1px;
+  line-height: 1;
+  user-select: none;
+}
+
+.originalRadio:checked + .radio .dot {
+  opacity: 1;
+}
+
+.originalRadio:disabled + .radio {
+  &:before {
+    background-color: var(--background);
+  }
+
+  .dot {
+    color: var(--background-dark);
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &:focus-within .label,
+  &:active .label {
+    outline: 1px dotted var(--black);
+    outline-offset: 1px;
+  }
+
+  &:active .radio {
+    --background-color: var(--background);
+  }
+}

@@ -1,0 +1,85 @@
+.button {
+  --padding: 6px;
+  --offset: 0px;
+  background-color: var(--background);
+  min-height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--padding);
+  position: relative;
+  box-shadow: var(--border);
+  user-select: none;
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0px;
+    outline: 1px dotted var(--black);
+    outline-offset: -4px;
+    opacity: 0;
+  }
+
+  &:after {
+    outline-offset: -5px;
+  }
+
+  &.large:focus:before {
+    opacity: 1;
+  }
+
+  &:active {
+    box-shadow: var(--border-active);
+    --offset: 1px;
+  }
+}
+
+.disabled {
+  color: var(--background-dark);
+  pointer-events: none;
+}
+
+.small {
+  --size: 12px;
+}
+
+.medium {
+  --size: 17px;
+}
+
+.large {
+  --size: 23px;
+  min-width: 75px;
+}
+
+.primary,
+.button.large:focus {
+  padding-inline: calc(var(--padding) - 1px);
+  border: 1px solid var(--black);
+}
+
+.text {
+  display: flex;
+  line-height: 1;
+  transform: translate(var(--offset), var(--offset));
+}
+
+.arrowButton {
+  --padding: 5px;
+  box-shadow: var(--border-inner);
+}
+
+.arrow {
+  mask-image: url("/assets/img/caret.svg");
+  background-color: var(--black);
+  width: 7px;
+  height: 4px;
+  margin-left: -1px;
+}
+
+.loading.large:before,
+.loading.large:after {
+  opacity: 1;
+}

@@ -1,0 +1,26 @@
+.inputGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  isolation: isolate;
+  gap: 8px;
+
+  > * {
+    height: auto;
+    &:focus-within {
+      z-index: 2;
+    }
+  }
+}
+// children with a sibling to the left
+.child + .child > * {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+
+// children with a sibling to the right
+.child:has(+ .child) > * {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

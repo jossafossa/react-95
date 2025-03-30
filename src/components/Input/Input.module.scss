@@ -1,0 +1,19 @@
+.wrapper {
+  box-shadow: var(--border-inside);
+  height: 21px;
+  padding: 2px;
+  display: flex;
+}
+
+.input {
+  font: inherit;
+  outline: none;
+  border: 0px;
+  padding-inline: 1px;
+
+  &[disabled],
+  &[readonly] {
+    background-color: var(--background);
+    color: var(--background-dark);
+  }
+}

@@ -1,0 +1,9 @@
+export type {{ pascalCase single }}Data = {
+  name: string
+};
+
+export type {{ pascalCase plural }}Data = {{ pascalCase single }}Data[];
+
+export const {{ pascalCase plural }}Slice = {
+  query: () => "{{ lowerCase plural }}.json",
+}

@@ -1,0 +1,79 @@
+.originalCheckbox {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.checkbox {
+  --checkbox-image: url("/assets/img/check.svg");
+  position: relative;
+  width: 13px;
+  height: 13px;
+  box-shadow: var(--border-inside);
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:after,
+  &:before {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    mask-image: url("/assets/img/check.svg");
+    background-color: currentColor;
+  }
+
+  &:before {
+    transform: translate(1px, 1px);
+    color: white;
+    opacity: 0;
+  }
+}
+
+.label {
+  position: relative;
+  top: 0.5px;
+  padding-top: 1px;
+  line-height: 1;
+  user-select: none;
+}
+
+.disabled {
+  pointer-events: none;
+  .checkbox {
+    background-color: var(--background);
+    color: var(--background-dark);
+  }
+
+  &:checked + .checkbox:before {
+    opacity: 1;
+  }
+
+  .label {
+    color: var(--background-dark);
+  }
+}
+
+.originalCheckbox:checked + .checkbox {
+  &:after {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &:focus-within .label,
+  &:active .label {
+    outline: 1px dotted var(--black);
+    outline-offset: 1px;
+  }
+
+  &:active .checkbox {
+    background-color: var(--background);
+  }
+}
