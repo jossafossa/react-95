@@ -1,0 +1,29 @@
+
+.menu {
+    display: flex;
+    margin-bottom: -2px;
+}
+
+.tabs {
+    isolation: isolate;
+}
+
+.item {
+    padding-inline:3px;
+    box-shadow: var(--border);
+    height:22px;
+    border-radius:2px 2px 0 0;
+    z-index: 0;
+
+
+    &.active{
+        z-index: 2;
+    }
+}
+
+.panels {
+    z-index: 2;
+    position: relative;
+    box-shadow: var(--border);
+    background-color: var(--background);
+}
