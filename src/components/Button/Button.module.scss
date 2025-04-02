@@ -26,7 +26,7 @@
     outline-offset: -5px;
   }
 
-  &.large:focus:before {
+  &:focus:before {
     opacity: 1;
   }
 
@@ -64,6 +64,7 @@
   display: flex;
   line-height: 1;
   transform: translate(var(--offset), var(--offset));
+  margin-bottom: 2px;
 }
 
 .arrowButton {

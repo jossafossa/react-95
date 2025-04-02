@@ -1,4 +1,6 @@
 /* PLOP_INJECT_EXPORT */
+export * from "./Line";
+export * from "./FieldSet";
 export * from "./Radio";
 export * from "./Checkbox";
 export * from "./Input";

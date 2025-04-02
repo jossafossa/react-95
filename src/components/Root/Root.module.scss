@@ -34,9 +34,12 @@
   --border-inner: -1px -1px 0 0 var(--black) inset,
     1px 1px 0 0 var(--background) inset,
     -2px -2px 0 0 var(--background-dark) inset, 2px 2px 0 0 var(--white) inset;
+  --border-subtle: -1px -1px 0 0 var(--white) inset,
+    1px 1px 0 0 var(--background-dark) inset,
+    -2px -2px 0 0 var(--background-dark) inset, 2px 2px 0 0 var(--white) inset;
   font-family: "MS Sans Serif", sans-serif;
   font-size: 11px;
-  line-height: 1.5;
+  line-height: 1;
 
   ::selection {
     background-color: var(--highlight);

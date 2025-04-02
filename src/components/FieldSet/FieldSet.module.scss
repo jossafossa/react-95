@@ -1,0 +1,13 @@
+.fieldSet {
+  border: none;
+  box-shadow: var(--border-subtle);
+  padding: 8px;
+  position: relative;
+}
+
+.legend {
+  background-color: var(--background);
+  top: 0.5px;
+  line-height: 1;
+  position: relative;
+}

@@ -1,7 +1,8 @@
 import { Input } from "./Input";
+import { useArgs } from "@storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentProps } from "react";
 
-// TODO: Implement Input
 const meta = {
   title: "ui/Input",
   component: Input,
@@ -18,6 +19,18 @@ const meta = {
       control: { type: "select" },
     },
   },
+  render: () => {
+    const [{ value, onChange, ...props }, setArgs] =
+      useArgs<ComponentProps<typeof Input>>();
+
+    const handleChange = (value: string) => {
+      setArgs({ value: value ?? undefined });
+
+      onChange?.(value);
+    };
+
+    return <Input value={value} onChange={handleChange} {...props} />;
+  },
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -30,11 +43,7 @@ export const Default: Story = {
 
 export const WithOptions: Story = {
   args: {
-    options: [
-      { label: "Option 1", value: "option1" },
-      { label: "Option 2", value: "option2" },
-      { label: "Option 3", value: "option3" },
-    ],
+    options: ["NL", "EN", "DE", "FR", "IT"],
   },
 };
 
