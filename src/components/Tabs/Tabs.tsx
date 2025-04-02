@@ -1,4 +1,16 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import React, {
+  AnchorHTMLAttributes,
+  Children,
+  cloneElement,
+  createContext,
+  isValidElement,
+  KeyboardEvent,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./Tabs.module.scss";
 import { Clickable } from "../Clickable";
 import classNames from "classnames";
@@ -6,11 +18,11 @@ import classNames from "classnames";
 const TabsContext = createContext<Partial<ReturnType<typeof useTabs>>>({});
 
 type useTabsProps = {
-  initialActiveTab: string;
+  initialActiveTab: number;
 };
 
 const useTabs = ({ initialActiveTab }: useTabsProps) => {
-  const [activeTab, setActiveTab] = useState<string>(initialActiveTab);
+  const [activeTab, setActiveTab] = useState<number>(initialActiveTab);
 
   return {
     activeTab,
@@ -27,10 +39,13 @@ const useTabsContext = () => {
 };
 
 export type TabsProps = {
-  initialActiveTab: string;
+  initialActiveTab?: number;
 };
 
-const Tabs = ({ children, initialActiveTab }: PropsWithChildren<TabsProps>) => {
+const Tabs = ({
+  children,
+  initialActiveTab = 0,
+}: PropsWithChildren<TabsProps>) => {
   const context = useTabs({ initialActiveTab });
 
   return (
@@ -40,39 +55,87 @@ const Tabs = ({ children, initialActiveTab }: PropsWithChildren<TabsProps>) => {
   );
 };
 
-const TabsMenu = ({ children }: PropsWithChildren) => {
-  return <div className={styles.menu}>{children}</div>;
-};
-
-type TabsItemProps = {
-  name: string;
-};
-
-const TabsItem = ({ name, children }: PropsWithChildren<TabsItemProps>) => {
+const Items = ({ children }: PropsWithChildren) => {
   const { activeTab, setActiveTab } = useTabsContext();
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    let currentIndex = activeTab;
+    if (event.key === "ArrowRight") {
+      currentIndex++;
+    } else if (event.key === "ArrowLeft") {
+      currentIndex--;
+    }
+
+    currentIndex = Math.max(
+      0,
+      Math.min(Children.count(children) - 1, currentIndex)
+    );
+
+    setActiveTab(currentIndex);
+  };
+
+  return (
+    <div className={styles.items} onKeyDown={handleKeyDown}>
+      {Children.map(children, (child, index) => {
+        if (isValidElement<ItemProps>(child)) {
+          return cloneElement(child, { index });
+        }
+        return child;
+      })}
+    </div>
+  );
+};
+
+type ItemProps = {
+  index?: number;
+};
+
+const Item = ({ index, children }: PropsWithChildren<ItemProps>) => {
+  const { activeTab, setActiveTab } = useTabsContext();
+  const item = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (activeTab === index) {
+      item.current?.focus();
+    }
+  }, [activeTab, index]);
 
   return (
     <Clickable
-      onClick={() => setActiveTab(name)}
-      className={classNames(styles.item, activeTab === name && styles.active)}
+      ref={item}
+      onClick={() => setActiveTab(index!)}
+      className={classNames(styles.item, activeTab === index && styles.active)}
     >
       {children}
     </Clickable>
   );
 };
 
-const TabsPanels = ({ children }: PropsWithChildren) => {
-  return <div className={styles.panels}>{children}</div>;
+const Panels = ({ children }: PropsWithChildren) => {
+  return (
+    <div className={styles.panels}>
+      {Children.map(children, (child, index) => {
+        if (isValidElement<ItemProps>(child)) {
+          return cloneElement(child, { index });
+        }
+        return child;
+      })}
+    </div>
+  );
 };
 
-const TabsPanel = ({ name, children }: PropsWithChildren<{ name: string }>) => {
+type PanelProps = {
+  index?: number;
+};
+
+const Panel = ({ index, children }: PropsWithChildren<PanelProps>) => {
   const { activeTab } = useTabsContext();
 
-  return activeTab === name && <div className={styles.panel}>{children}</div>;
+  return activeTab === index && <div className={styles.panel}>{children}</div>;
 };
 
-Tabs.Menu = TabsMenu;
-Tabs.Item = TabsItem;
-Tabs.Panels = TabsPanels;
-Tabs.Panel = TabsPanel;
+Tabs.Items = Items;
+Tabs.Item = Item;
+Tabs.Panels = Panels;
+Tabs.Panel = Panel;
 export { Tabs };

@@ -1,29 +1,56 @@
+.tabs {
+  --item-offset: 0px;
+  --item-offset-bottom: 2px;
+  --item-border-offset: 0px;
 
-.menu {
-    display: flex;
-    margin-bottom: -2px;
+  isolation: isolate;
 }
 
-.tabs {
-    isolation: isolate;
+.items {
+  --item-height: 18px;
+  padding-inline: 2px;
+  display: flex;
 }
 
 .item {
-    padding-inline:3px;
-    box-shadow: var(--border);
-    height:22px;
-    border-radius:2px 2px 0 0;
-    z-index: 0;
+  padding-inline: calc(7px + var(--item-offset));
+  margin-inline: calc(-1 * var(--item-offset));
+  margin-top: calc(-1 * var(--item-offset));
+  height: calc(
+    var(--item-height) + var(--item-offset) + var(--item-bottom-offset)
+  );
+  padding-bottom: var(--menu-bottom-offset);
+  border-radius: 2px 2px 0 0;
+  z-index: 0;
+  background-color: var(--background);
 
+  --outer-shadow: -1px 0px 0 0 var(--black) inset;
+  --outer-highlight: 1px 1px 0 0 var(--white) inset;
+  --inner-shadow: -2px 0px 0 0 var(--background-dark) inset;
+  --inner-highlight: 2px 2px 0 0 var(--background-light) inset;
+  --border: var(--outer-shadow), var(--outer-highlight), var(--inner-shadow);
+  box-shadow: var(--border);
 
-    &.active{
-        z-index: 2;
-    }
+  &.active {
+    --item-bottom-offset: 1px;
+    --item-offset: 2px;
+    margin-bottom: calc(-1 * var(--item-bottom-offset));
+    z-index: 2;
+  }
+
+  &:focus {
+    outline: 1px dotted var(--black);
+    outline-offset: -4px;
+  }
 }
 
 .panels {
-    z-index: 2;
-    position: relative;
-    box-shadow: var(--border);
-    background-color: var(--background);
+  z-index: 1;
+  position: relative;
+  box-shadow: var(--border);
+  background-color: var(--background);
+}
+
+.panel {
+  padding: 11px 10px 13px;
 }

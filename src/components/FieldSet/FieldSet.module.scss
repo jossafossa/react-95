@@ -1,7 +1,7 @@
 .fieldSet {
   border: none;
   box-shadow: var(--border-subtle);
-  padding: 8px;
+  padding: 5px 9px 8px;
   position: relative;
 }
 
@@ -10,4 +10,6 @@
   top: 0.5px;
   line-height: 1;
   position: relative;
+  padding-inline: 2px;
+  margin-inline: -2px;
 }

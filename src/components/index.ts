@@ -1,4 +1,5 @@
 /* PLOP_INJECT_EXPORT */
+export * from "./Range";
 export * from "./Tabs";
 export * from "./Line";
 export * from "./FieldSet";
