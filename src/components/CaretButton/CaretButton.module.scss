@@ -1,0 +1,53 @@
+.caretButton {
+  box-shadow: var(--border-inner);
+  width: 15px;
+  height: 8px;
+  padding: 0;
+  min-height: 0;
+
+  &:active {
+    box-shadow: var(--border-inner-active);
+    --offset: 1px;
+  }
+
+  &:before,
+  &:after {
+    content: unset;
+  }
+}
+
+.caret {
+  --icon: url("/assets/img/caret-down.svg");
+  position: relative;
+  width: 3px;
+  height: 2px;
+  margin-bottom: -2px;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    mask-image: var(--icon);
+    background-color: var(--black);
+  }
+
+  &:before {
+    transform: translate(1px, 1px);
+    background-color: var(--white);
+    opacity: 0;
+  }
+}
+
+.disabled .caret {
+  &:after {
+    background-color: var(--background-dark);
+  }
+
+  &:before {
+    opacity: 1;
+  }
+}
+
+.up .caret {
+  --icon: url("/assets/img/caret-up.svg");
+}

@@ -1,10 +1,10 @@
 import { fn } from "@storybook/test";
-import { ArrowButton } from "./Button";
+import { CaretButton } from "./CaretButton";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "internal/ArrowButton",
-  component: ArrowButton,
+  title: "internal/CaretButton",
+  component: CaretButton,
   parameters: {
     layout: "centered",
     docs: {
@@ -13,7 +13,7 @@ const meta = {
   },
   args: {},
   argTypes: {},
-} satisfies Meta<typeof ArrowButton>;
+} satisfies Meta<typeof CaretButton>;
 
 export default meta;
 
@@ -22,5 +22,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     onClick: fn(),
+  },
+};
+
+export const Up: Story = {
+  args: {
+    onClick: fn(),
+    direction: "up",
   },
 };

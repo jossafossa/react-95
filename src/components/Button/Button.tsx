@@ -3,7 +3,7 @@ import styles from "./Button.module.scss";
 import { Clickable } from "../Clickable";
 import classNames from "classnames";
 
-type ButtonProps = {
+export type ButtonProps = {
   variant?: "normal" | "primary";
   size?: "medium" | "large";
   loading?: boolean;
@@ -14,6 +14,7 @@ export const Button = ({
   variant = "normal",
   size = "large",
   loading = false,
+  className,
   ...commonProps
 }: PropsWithChildren<ButtonProps>) => (
   <Clickable
@@ -23,23 +24,10 @@ export const Button = ({
       styles[variant],
       styles[size],
       loading && styles.loading,
-      commonProps.disabled && styles.disabled
+      commonProps.disabled && styles.disabled,
+      className
     )}
   >
     <span className={styles.text}>{children}</span>
-  </Clickable>
-);
-
-type ArrowButtonProps = {
-  variant?: "normal" | "primary";
-  size?: "small" | "medium" | "large";
-} & ButtonHTMLAttributes<HTMLButtonElement>;
-
-export const ArrowButton = ({ ...commonProps }: ArrowButtonProps) => (
-  <Clickable
-    {...commonProps}
-    className={classNames(styles.button, styles.arrowButton, styles.medium)}
-  >
-    <span className={classNames(styles.text, styles.arrow)} />
   </Clickable>
 );

@@ -34,6 +34,9 @@
   --border-inner: -1px -1px 0 0 var(--black) inset,
     1px 1px 0 0 var(--background) inset,
     -2px -2px 0 0 var(--background-dark) inset, 2px 2px 0 0 var(--white) inset;
+  --border-inner-active: -1px -1px 0 0 var(--white) inset,
+    1px 1px 0 0 var(--background-dark) inset,
+    -2px -2px 0 0 var(--background) inset, 2px 2px 0 0 var(--black) inset;
   --border-subtle: -1px -1px 0 0 var(--white) inset,
     1px 1px 0 0 var(--background-dark) inset,
     -2px -2px 0 0 var(--background-dark) inset, 2px 2px 0 0 var(--white) inset;

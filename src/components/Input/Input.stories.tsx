@@ -12,10 +12,9 @@ const meta = {
       autodocs: true,
     },
   },
-  args: {},
   argTypes: {
     type: {
-      options: ["text", "email", "password"],
+      options: ["text", "email", "password", "number"],
       control: { type: "select" },
     },
   },
@@ -41,15 +40,35 @@ export const Default: Story = {
   args: {},
 };
 
+export const Disabled: Story = {
+  args: {
+    value: "Disabled Input",
+    disabled: true,
+  },
+};
+
+export const Number: Story = {
+  args: {
+    type: "number",
+  },
+};
+export const NumberDisabled: Story = {
+  args: {
+    type: "number",
+    disabled: true,
+  },
+};
+
 export const WithOptions: Story = {
   args: {
     options: ["NL", "EN", "DE", "FR", "IT"],
   },
 };
 
-export const Disabled: Story = {
+export const DisabledWithOptions: Story = {
   args: {
     value: "Disabled Input",
     disabled: true,
+    options: ["NL", "EN", "DE", "FR", "IT"],
   },
 };

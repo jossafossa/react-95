@@ -1,6 +1,7 @@
 import { Clickable } from "./Clickable";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
+import { MemoryRouter } from "react-router-dom";
 
 const meta = {
   title: "internal/Clickable",
@@ -12,6 +13,13 @@ const meta = {
     onClick: { action: fn() },
     to: { control: { type: "text" } },
   },
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 } satisfies Meta<typeof Clickable>;
 
 export default meta;

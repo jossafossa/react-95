@@ -1,16 +1,24 @@
 import { InputHTMLAttributes, useRef, useState } from "react";
 import styles from "./Input.module.scss";
-import { ArrowButton } from "../Button/Button";
+import { ArrowButton } from "../ArrowButton";
 import { Clickable } from "../Clickable";
 import classNames from "classnames";
 import { Text } from "../Text";
+import { NumberButtons } from "./NumberButtons";
 
 export type InputProps = {
   options?: string[];
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "onChange">;
 
-export function Input({ options, onChange, ...commonProps }: InputProps) {
+export function Input({
+  options,
+  onChange,
+  disabled,
+  type = "text",
+  value,
+  ...commonProps
+}: InputProps) {
   const [selectedIndex, setSelectedIndex] = useState(1);
   const dropdown = useRef<HTMLUListElement>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -59,10 +67,16 @@ export function Input({ options, onChange, ...commonProps }: InputProps) {
         className={styles.input}
         ref={input}
         onChange={({ target }) => onChange?.(target.value)}
+        disabled={disabled}
+        type={type}
+        value={value}
         {...commonProps}
       />
-      {options && <ArrowButton onClick={focusDropdown} />}
-      {options && (
+      {type === "number" && (
+        <NumberButtons disabled={disabled} value={value} onChange={onChange} />
+      )}
+      {options && <ArrowButton disabled={disabled} onClick={focusDropdown} />}
+      {options && !disabled && (
         <ul
           className={styles.options}
           onKeyDown={handleKeyboardNavigation}

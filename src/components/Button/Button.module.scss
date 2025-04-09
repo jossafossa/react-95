@@ -67,19 +67,6 @@
   margin-bottom: 2px;
 }
 
-.arrowButton {
-  --padding: 5px;
-  box-shadow: var(--border-inner);
-}
-
-.arrow {
-  mask-image: url("/assets/img/caret.svg");
-  background-color: var(--black);
-  width: 7px;
-  height: 4px;
-  margin-left: -1px;
-}
-
 .loading.large:before,
 .loading.large:after {
   opacity: 1;

@@ -17,6 +17,12 @@
     background-color: var(--background);
     color: var(--background-dark);
   }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 .options {
@@ -32,10 +38,12 @@
   left: 0;
   background-color: var(--white);
   opacity: 0;
+  pointer-events: none;
 
   &:focus,
   &:focus-within {
     opacity: 1;
+    pointer-events: initial;
   }
 }
 

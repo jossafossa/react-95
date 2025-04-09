@@ -1,4 +1,6 @@
 /* PLOP_INJECT_EXPORT */
+export * from "./CaretButton";
+export * from "./ArrowButton";
 export * from "./Range";
 export * from "./Tabs";
 export * from "./Line";

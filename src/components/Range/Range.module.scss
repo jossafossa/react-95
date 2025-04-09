@@ -1,2 +1,45 @@
+.rangeInput {
+  --height: 21px;
+  height: 4px;
+  margin: 0;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: var(--border-inside);
+
+  // disable default browser styles
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &::-webkit-slider-thumb {
+    background-color: var(--background);
+    box-shadow: var(--border);
+    appearance: none;
+    width: 11px;
+    height: 21px;
+  }
+
+  &:focus {
+    outline: 1px dotted var(--black);
+  }
+}
+
 .range {
+  --height: 21px;
+  position: relative;
+}
+
+.track {
+  height: 4px;
+  width: 100%;
+  box-shadow: var(--border-inside);
+}
+
+.thumb {
+  background-color: var(--background);
+  box-shadow: var(--border);
+  appearance: none;
+  width: 11px;
+  height: 21px;
+  position: absolute;
 }

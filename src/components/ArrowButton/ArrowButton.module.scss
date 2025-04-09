@@ -1,0 +1,36 @@
+.arrowButton {
+  --padding: 5px;
+  box-shadow: var(--border-inner);
+}
+
+.arrow {
+  margin-left: -1px;
+
+  position: relative;
+  width: 7px;
+  height: 4px;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    mask-image: url("/assets/img/arrow.svg");
+    background-color: var(--black);
+  }
+
+  &:before {
+    transform: translate(1px, 1px);
+    background-color: var(--white);
+    opacity: 0;
+  }
+}
+
+.disabled .arrow {
+  &:after {
+    background-color: var(--background-dark);
+  }
+
+  &:before {
+    opacity: 1;
+  }
+}
